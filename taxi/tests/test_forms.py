@@ -1,6 +1,9 @@
 from django.test import TestCase
 
-from taxi.forms import DriverCreationForm, CarModelSearchForm
+from taxi.forms import (DriverCreationForm,
+                        CarModelSearchForm,
+                        ManufacturerNameSearchForm,
+                        DriverUsernameSearchForm)
 
 
 class TestForms(TestCase):
@@ -55,4 +58,14 @@ class TestForms(TestCase):
     def test_car_model_search_form_can_be_empty(self):
         form_data = {"model": ""}
         form = CarModelSearchForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_manufacturer_name_search_form_can_be_empty(self):
+        form_data = {"name": ""}
+        form = ManufacturerNameSearchForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_driver_username_search_form_can_be_empty(self):
+        form_data = {"username": ""}
+        form = DriverUsernameSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
